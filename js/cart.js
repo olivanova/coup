@@ -17,6 +17,7 @@ var closeIcon = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www
 var cart = [];
 
 
+
 for (var i=0; i<addCart.length; i++){	
   addCart[i].addEventListener('click', function(event){
     event.preventDefault();
@@ -74,3 +75,70 @@ function createLine(item, i){
 	return line;
 }
 
+
+
+
+//таймер
+function timer() {
+	var itemSpecial = document.querySelectorAll('.catalog_cart--special');
+	console.log(itemSpecial);
+
+	for (var i=0; i < itemSpecial.length; i++ ){
+		var time =[];
+		var timerItem = itemSpecial[i].querySelectorAll('.timer__item');
+		for (var j=0; j<timerItem.length; j++){
+			var firstSpan=timerItem[j].querySelector('span:first-child');
+			//timer = firstSpan.innerHTML;
+			time.push({
+				val:firstSpan
+			});
+		}
+		
+		for (var key in time){
+			var sec = Number(time[3].val.innerHTML);
+			var min = Number(time[2].val.innerHTML);
+			var hour = Number(time[1].val.innerHTML);
+			var day = Number(time[0].val.innerHTML);
+		}
+		if (sec == 0){
+			if(min == 0){
+				if (hour ==0){
+					if(day == 0){
+						itemSpecial[i].classList.add('catalog_cart--disabled');
+						itemSpecial[i].classList.remove('catalog_cart--special');
+					}
+					else {
+						day --;
+						hour = 23;
+						min = 59;
+						sec = 59;
+						time[0].val.innerHTML = day;
+						time[1].val.innerHTML = hour;
+						time[2].val.innerHTML = min;
+						time[3].val.innerHTML = sec;
+					}
+
+				} else {
+					hour --;
+					min = 59;
+					sec = 59;
+					time[1].val.innerHTML = hour;
+					time[2].val.innerHTML = min;
+					time[3].val.innerHTML =sec;
+				}
+
+			} else {
+				min --;
+				sec = 59;
+				time[2].val.innerHTML = min;
+				time[3].val.innerHTML = sec;
+
+			}
+		} else {
+			sec -- ;
+			time[3].val.innerHTML=sec;
+		}
+	}
+}
+
+setInterval(timer, 1000);
