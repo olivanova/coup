@@ -80,6 +80,7 @@ function createLine(item, i){
 
 //таймер
 function timer() {
+	// создаю объект, добавляю в него карточки с классом special
 	var itemSpecial = document.querySelectorAll('.catalog_cart--special');
 	console.log(itemSpecial);
 
@@ -93,13 +94,14 @@ function timer() {
 				val:firstSpan
 			});
 		}
-		
+		// полученный числа делаю числами
 		for (var key in time){
 			var sec = Number(time[3].val.innerHTML);
 			var min = Number(time[2].val.innerHTML);
 			var hour = Number(time[1].val.innerHTML);
 			var day = Number(time[0].val.innerHTML);
 		}
+		// timer
 		if (sec == 0){
 			if(min == 0){
 				if (hour ==0){
