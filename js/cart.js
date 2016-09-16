@@ -22,6 +22,7 @@ for (var i=0; i<addCart.length; i++){
   addCart[i].addEventListener('click', function(event){
     event.preventDefault();
 	var card = event.target.closest('.catalog_cart'); //определим по какому элементу клик
+	if (card.className.indexOf('catalog_cart--disabled') === -1){
 	var titlew = card.querySelector('.catalog_cart__title').innerHTML; // из элемента идем ниже по дереву до catalog_cart__title
 	//var price = card.querySelector('.catalog_cart__price_new').innerHTML; - первый способ вытащить price 
 	var price = card.dataset.price; // второй способ 
@@ -32,7 +33,8 @@ for (var i=0; i<addCart.length; i++){
 	});
 	  createBasket();
 	console.log(cart);
-  })
+  
+  }})
 }
 
 
@@ -82,7 +84,6 @@ function createLine(item, i){
 function timer() {
 	// создаю объект, добавляю в него карточки с классом special
 	var itemSpecial = document.querySelectorAll('.catalog_cart--special');
-	console.log(itemSpecial);
 
 	for (var i=0; i < itemSpecial.length; i++ ){
 		var time =[];
@@ -144,3 +145,26 @@ function timer() {
 }
 
 setInterval(timer, 1000);
+
+
+// отображение по 3 и 2 товара на странице
+// 2 items
+var item2 = document.querySelector('.catalog_view__item:first-child');
+var item3 = document.querySelector('.catalog_view__item:last-child');
+var list = document.querySelector('.catalog__list');
+
+item2.addEventListener('click', function(e){				   
+	item2.classList.add('catalog_view__item--active');
+	item3.classList.remove('catalog_view__item--active');
+	list.classList.add('catalog__list--two');
+	list.classList.remove('catalog__list--three');
+  })
+
+// 3 items
+item3.addEventListener('click', function(e){				   
+	item3.classList.add('catalog_view__item--active');
+	item2.classList.remove('catalog_view__item--active');
+	list.classList.remove('catalog__list--two');
+	list.classList.add('catalog__list--three');
+  })
+
