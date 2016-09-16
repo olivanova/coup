@@ -167,4 +167,3 @@ item3.addEventListener('click', function(e){
 	list.classList.remove('catalog__list--two');
 	list.classList.add('catalog__list--three');
   })
-
