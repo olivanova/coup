@@ -167,3 +167,12 @@ item3.addEventListener('click', function(e){
 	list.classList.remove('catalog__list--two');
 	list.classList.add('catalog__list--three');
   })
+
+// open filtres
+var filtresTitle = document.querySelectorAll('.filter__title'); // массив заголовков фильтров
+
+for (var i=0; i<filtresTitle.length; i++){	
+  filtresTitle[i].addEventListener('click', function(event){
+	 var parentFilter = event.target.parentNode; // определяю "родителя" элемента, по которому сделан клик
+	  parentFilter.classList.toggle('filter--open'); // add class '..open' for parent
+  })}
